@@ -2,14 +2,20 @@
   <head>
 	<title>AngularJS Directive and Data Binding</title>
   </head>
-  <body data-ng-init="names=['John Smith', 'John Doe', 'Jane Doe']">
+  <body data-ng-init="customers=[
+					  {name: 'John Smith', city: 'Phoenix' },
+					  {name: 'John Doe', city: 'NH'},
+					  {name: 'Jane Doe', city: 'MA'}]">
 	Name:
 	<br/>
-	<input type="text" ng-model="name" /> {{ name }}
+	<input type="text" ng-model="name" />
 
 	<br/>
 	<ul>
-	  <li data-ng-repeat="personName in names">{{ personName }}</li>
+	  <li data-ng-repeat="customer in customers | filter:name |
+						  orderBy:'city' ">
+		{{ customer.name }} - {{ customer.city }}
+	  </li>
 	</ul>
 
 	<script src="angular.min.js"></script>
